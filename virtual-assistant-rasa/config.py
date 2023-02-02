@@ -13,8 +13,8 @@ client_config = {
 }
 
 riva_config = {
-    "RIVA_SPEECH_API_URL": "localhost:50051", # Replace the IP port with your hosted RIVA endpoint
-    "WEATHERSTACK_ACCESS_KEY": "",  # Get your access key at - https://weatherstack.com/
+    "RIVA_SPEECH_API_URL": "192.168.71.37:50051", # Replace the IP port with your hosted RIVA endpoint
+    "WEATHERSTACK_ACCESS_KEY": "bcddbaca6d86195fb8382c13cd6b9a6a",  # Get your access key at - https://weatherstack.com/
     "VERBOSE": True  # print logs/details for diagnostics
 }
 
