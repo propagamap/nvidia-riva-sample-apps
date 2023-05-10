@@ -58,6 +58,7 @@ function initTTS() {
 	    "onwaiting",
 	    function () {
 	      console.log("Audio is currently waiting for more data");
+        console.log("Esperando audio");
 	    },
 	    false
 	  );
@@ -85,11 +86,13 @@ function initTTS() {
 	  audio.oncanplay = function () {
 	    console.log("Audio oncanplay");
 	  };
+    
 	  // Chrome will refuse to play without this
 	  let unmuteButton = document.getElementById("unmuteButton");
 	  unmuteButton.addEventListener("click", function () {
 	    if (unmuteButton.innerText == "Unmute System Speech") {
 	      tts_enabled = true;
+        console.log("emit tts")
 	      socket.emit("start_tts", { "user_conversation_index": user_conversation_index });
 	      unmuteButton.innerText = "Mute System Speech";
 	      console.log("TTS Play button clicked");
@@ -101,8 +104,8 @@ function initTTS() {
 	      console.log("TTS Stop button clicked");
 	    }
 	  });
-	  audio.load();
-      audio.play();
+	    audio.load();
+    audio.play();
 }
 
 // ---------------------------------------------------------------------------------------
@@ -118,6 +121,7 @@ function initializeRecorderAndConnectSocket() {
     mediaStream = stream;
     // get sample rate
     audio_context = new AudioContext();
+    console.log("Audio Context: " + audio_context)
     sampleRate = audio_context.sampleRate;
     let audioInput = audio_context.createMediaStreamSource(stream);
     let bufferSize = 4096;
@@ -193,6 +197,7 @@ function get_new_user_conversation_index() {
       error_servicerecall_currentcnt["get_new_user_conversation_index"] = 0;
       if (data) {
     	  user_conversation_index = data;
+        console.log("New user_conversation_index: " + user_conversation_index)
     	  initializeRecorderAndConnectSocket();
     	  init();
       } else {
@@ -206,7 +211,8 @@ function get_new_user_conversation_index() {
       if (error_servicerecall_currentcnt["get_new_user_conversation_index"] < error_servicerecall_limits["get_new_user_conversation_index"]) {
   		  // If Rivadm doesn't response, wait and try it again
       	  error_servicerecall_currentcnt["get_new_user_conversation_index"] = error_servicerecall_currentcnt["get_new_user_conversation_index"] + 1;
-          setTimeout(get_new_user_conversation_index(), 3000);
+          setTimeout(get_new_user_conversation_index(), 10000);
+          console.log("Fin conversacion, esperando 10 segundos para iniciar nueva conversacion")
       } else {
           error_servicerecall_currentcnt["get_new_user_conversation_index"] = 0;  
           showSystemErrorMessage("get_new_user_conversation_index", errorThrown);

@@ -24,7 +24,7 @@ rasa_config = {
 }
 
 asr_config = {
-    "VERBOSE": False, # Print logs/details for diagnostics
+    "VERBOSE": True, # Print logs/details for diagnostics
     "SAMPLING_RATE": 16000, # The Sampling Rate for the audio input file. The only value currently supported is 16000
     "LANGUAGE_CODE": "en-US", # The language code as a BCP-47 language tag. The only value currently supported is "en-US"
     "ENABLE_AUTOMATIC_PUNCTUATION": True, # Enable or Disable punctuation in the transcript generated. The only value currently supported by the chatbot is True (Although Riva ASR supports both True & False)
@@ -38,6 +38,6 @@ tts_config = {
 }
 
 rivanlp_config = {
-    "VERBOSE": False, # Print logs/details for diagnostics
+    "VERBOSE": True, # Print logs/details for diagnostics
     "NLU_FALLBACK_THRESHOLD": 0.3 # When Intent's confidence/score is less than this value, intent is set to nlu_fallback
 }

@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@cleandersonlobo/react-mic": "^1.2.0",
+    "buffer-from": "^1.1.2",
+    "get-user-media-promise": "^1.1.4",
+    "react-mic": "^12.4.6",
+    "readable-stream": "^4.3.0"
+  },
+  "devDependencies": {
+    "@types/react-mic": "^12.4.3"
+  }
+}

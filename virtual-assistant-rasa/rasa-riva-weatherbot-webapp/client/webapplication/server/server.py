@@ -113,6 +113,7 @@ def get_input():
 # Writes audio data to ASR buffer
 @sio.on('audio_in', namespace='/')
 def receive_remote_audio(data):
+    print("Audio recibido 1")
     currentChatbot = get_chatbot(data["user_conversation_index"])
     if currentChatbot:
         currentChatbot.asr_fill_buffer(data["audio"])
@@ -120,6 +121,7 @@ def receive_remote_audio(data):
 
 @sio.on('start_tts', namespace='/')
 def start_tts(data):
+    print("Audio recibido 2")
     currentChatbot = get_chatbot(data["user_conversation_index"])
     if currentChatbot:
         currentChatbot.start_tts()
@@ -127,6 +129,7 @@ def start_tts(data):
 
 @sio.on('stop_tts', namespace='/')
 def stop_tts(data):
+    print("Audio recibido 3")
     currentChatbot = get_chatbot(data["user_conversation_index"])
     if currentChatbot:
         currentChatbot.stop_tts()
@@ -134,6 +137,7 @@ def stop_tts(data):
 
 @sio.on('pause_asr', namespace='/')
 def pauseASR(data):
+    print("Audio recibido 4")
     currentChatbot = get_chatbot(data["user_conversation_index"])
     if currentChatbot:
         if verbose:
@@ -143,6 +147,7 @@ def pauseASR(data):
 
 @sio.on('unpause_asr', namespace='/')
 def unpauseASR(data):
+    print("Audio recibido 5")
     currentChatbot = get_chatbot(data["user_conversation_index"])
     if currentChatbot:
         if verbose:
@@ -154,6 +159,7 @@ def unpauseASR(data):
 
 @sio.on('pause_wait_unpause_asr', namespace='/')
 def pause_wait_unpause_asr(data):
+    print("Audio recibido 6")
     currentChatbot = get_chatbot(data["user_conversation_index"])
     if currentChatbot:
         currentChatbot.pause_wait_unpause_asr()
@@ -162,11 +168,13 @@ def pause_wait_unpause_asr(data):
 
 @sio.on("connect", namespace="/")
 def connect():
+    print("Audio recibido 7")
     if verbose:
         print('[Client Server] Client connected')
 
 
 @sio.on("disconnect", namespace="/")
 def disconnect():
+    print("Audio recibido 8")
     if verbose:
         print('[Client Server] Client disconnected')
